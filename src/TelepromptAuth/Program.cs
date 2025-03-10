@@ -1,16 +1,25 @@
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddAuthentication();
-builder.Services.AddAuthorization();
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
-// Add Redis cache
-builder.Services.AddStackExchangeRedisCache(options =>
+public class Program
 {
-    options.Configuration = builder.Configuration.GetConnectionString("RedisConnection");
-});
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        builder.Services.AddAuthentication();
+        builder.Services.AddAuthorization();
 
-var app = builder.Build();
-app.UseAuthentication();
-app.UseAuthorization();
+        // Add Redis cache
+        builder.Services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = builder.Configuration.GetConnectionString("RedisConnection");
+        });
 
-app.MapGet("/", () => "Authentication Service Running");
-app.Run();
+        var app = builder.Build();
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapGet("/", () => "Authentication Service Running");
+        app.Run();
+    }
+}
