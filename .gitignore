@@ -1,0 +1,23 @@
+## .NET Core
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+## VS Code
+.vscode/
+.vs/
+
+## Environment Files
+*.env
+appsettings.Development.json
+appsettings.Production.json
+
+## Redis
+*.rdb
+
+## Logs
+logs/
+*.log
