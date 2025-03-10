@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "test": "dotnet test",
+    "build": "dotnet build --configuration Release",
+    "launch": "dotnet run --project src/TelepromptAuth"
+  }
+}
